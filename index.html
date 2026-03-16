@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>我的个人主页</title>
+    <title>NicoleR6的个人主页</title>
     <style>
         /* 这是 CSS：负责外观 */
         body { 
@@ -32,16 +32,33 @@
 </head>
 <body>
     <div class="card">
-        <h1>你好，我是 Nicole</h1>
-        <p>这是我通过 WSL 推送的第一个 GitHub Pages 页面！</p>
-        <button onclick="sayHello()">点我一下</button>
+        <h1>我的导航收藏夹</h1>
+        <div id="nav-links" style="display: grid; gap: 10px; margin-top: 20px;"></div>
     </div>
 
     <script>
-        // 这是 JavaScript：负责交互
-        function sayHello() {
-            alert('Hello! 你的前端之旅开始了！');
-        }
+        const mySites = [
+            { name: "GitHub", url: "https://github.com" },
+            { name: "Bilibili", url: "https://bilibili.com" },
+            { name: "MDN 文档", url: "https://developer.mozilla.org" }
+        ];
+
+        const container = document.getElementById('nav-links');
+
+        mySites.forEach(site => {
+            const link = document.createElement('a');
+            link.href = site.url;
+            link.innerText = site.name;
+            link.target = "_blank";
+
+            link.style.padding = "10px";
+            link.style.background = "#eee";
+            link.style.borderRadius = "8px";
+            link.style.textDecoration = "none";
+            link.style.color = "#333";
+
+            container.appendChild(link);
+        });
     </script>
 </body>
 </html>
