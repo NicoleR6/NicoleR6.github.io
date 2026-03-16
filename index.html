@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>我的个人主页</title>
+    <style>
+        /* 这是 CSS：负责外观 */
+        body { 
+            background-color: #f0f2f5; 
+            font-family: sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+        }
+        .card { 
+            background: white; 
+            padding: 2rem; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+            text-align: center;
+        }
+        button { 
+            background: #007bff; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>你好，我是 Nicole</h1>
+        <p>这是我通过 WSL 推送的第一个 GitHub Pages 页面！</p>
+        <button onclick="sayHello()">点我一下</button>
+    </div>
+
+    <script>
+        // 这是 JavaScript：负责交互
+        function sayHello() {
+            alert('Hello! 你的前端之旅开始了！');
+        }
+    </script>
+</body>
+</html>
