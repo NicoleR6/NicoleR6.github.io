@@ -15,6 +15,26 @@
             transition: all 0.5s;
         }
 
+        .search-box {
+            margin: 20px 0;
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #eee;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        #search-input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
+        }
+
         body.dark-mode {
             background-color: #1a1a1a;
             color: #ecf0f1;
@@ -34,6 +54,12 @@
             background: linear-gradient(145deg, #333, #222);
             border-color: #444;
             color: #ecf0f1;
+        }
+
+        body.dark-mode #search-input {
+            background: #333;
+            border-color: #444;
+            color: white;
         }
 
         .icon {
@@ -89,9 +115,13 @@
 <body>
     <div class="card">
         <h1 id="title">收藏夹</h1>
-        <p id="greeting" style="color: #666; font-size: 0.9rem;">
+        <p id="greeting" style="color: #666; font-size: 0.9rem;"></p>
 
-        </p><div id="nav-links"></div>
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="输入并回车搜索 Google..." />
+        </div>
+
+        <div id="nav-links"></div>
     </div>
 
     <script>
@@ -138,6 +168,17 @@
             } catch (err) {
                 console.error("加载数据失败:", err);
             }
+
+            const searchInput = document.getElementById('search-input');
+
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value;
+                    if (query) {
+                        window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                    }
+                }
+            });
         }
 
         init();
