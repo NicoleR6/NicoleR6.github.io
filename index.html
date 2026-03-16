@@ -4,14 +4,30 @@
     <meta charset="UTF-8">
     <title>NicoleR6的个人主页</title>
     <style>
-        /* 这是 CSS：负责外观 */
         body { 
             background-color: #f0f2f5; 
+            color: #333;
             font-family: sans-serif; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             height: 100vh; 
+            transition: all 0.5s;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ecf0f1;
+        }
+
+        body.dark-mode .card {
+            background: #2d2d2d;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            color: #ecf0f1;
+        }
+
+        body.dark-mode h1 {
+            color: #ecf0f1;
         }
         .card {
             background: white;
@@ -70,17 +86,13 @@
         const greetingElement = document.getElementById('greeting');
         let greetingText = "";
 
-        // 2. 根据时间判断问候语
-        if (hour < 12) {
-            greetingText = "☀️ 早上好！开启元气满满的一天";
-        } else if (hour < 18) {
-            greetingText = "☕ 下午好！记得喝点水休息一下";
-        } else {
+        if (hour >= 18 || hour < 6) {
+            document.body.classList.add('dark-mode');
             greetingText = "🌙 晚上好！该整理今天的收获了";
-            document.body.style.backgroundColor = "#2c3e50";
-            document.body.style.color = "#ecf0f1";
+        } else {
+            greetingText = hour < 12 ? "☀️ 早上好！" : "☕ 下午好！";
         }
-
+        
         greetingElement.innerText = greetingText;
         
         const mySites = [
