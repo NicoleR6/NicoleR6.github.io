@@ -5,14 +5,23 @@
     <title>NicoleR6的个人主页</title>
     <style>
         body { 
-            background-color: #f0f2f5; 
-            color: #333;
-            font-family: sans-serif; 
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBg 15s ease infinite;
+            
+            font-family: 'Segoe UI', system-ui, sans-serif; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             height: 100vh; 
-            transition: all 0.5s;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .search-box {
@@ -40,10 +49,21 @@
             color: #ecf0f1;
         }
 
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            width: 380px;
+            text-align: center;
+        }
+
         body.dark-mode .card {
-            background: #2d2d2d;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            color: #ecf0f1;
+            background: rgba(45, 45, 45, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         body.dark-mode h1 {
@@ -51,9 +71,8 @@
         }
 
         body.dark-mode .nav-item {
-            background: linear-gradient(145deg, #333, #222);
-            border-color: #444;
-            color: #ecf0f1;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
         }
 
         body.dark-mode #search-input {
@@ -87,8 +106,8 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            background: linear-gradient(145deg, #ffffff, #f0f0f0);
-            border: 1px solid #ddd;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 16px;
             text-decoration: none;
             color: #333;
