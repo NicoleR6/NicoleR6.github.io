@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <title>NicoleR6的个人主页</title>
     <style>
-        body { 
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradientBg 15s ease infinite;
-            
-            font-family: 'Segoe UI', system-ui, sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-color: #ffffff;
+        }
+
+        body {
+            background: url('https://source.unsplash.com/random/1920x1080?landscape,dark') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
             margin: 0;
-            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            color: var(--text-color);
+            transition: all 0.5s;
         }
 
         @keyframes gradientBg {
@@ -24,24 +29,35 @@
             100% { background-position: 0% 50%; }
         }
 
-        .search-box {
-            margin: 20px 0;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
+        .search-box { margin-bottom: 25px; }
+
         #search-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 12px 15px;
             width: 100%;
-            padding: 12px 20px;
-            border: 2px solid #eee;
-            border-radius: 50px;
+            box-sizing: border-box;
+            color: white;
             outline: none;
             transition: all 0.3s;
-            box-sizing: border-box;
-            font-size: 1rem;
         }
 
         #search-input:focus {
+            background: rgba(255, 255, 255, 0.2);
             border-color: #007bff;
-            box-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
         }
 
         body.dark-mode {
@@ -50,19 +66,20 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px 30px;
             width: 380px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             text-align: center;
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
         body.dark-mode .card {
-            background: rgba(45, 45, 45, 0.6);
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -86,6 +103,7 @@
             margin-bottom: 5px;
         }
         .card {
+            animation: fadeInUp 0.8s ease-out forwards;
             background: white;
             padding: 30px;
             border-radius: 20px;
@@ -96,31 +114,46 @@
 
         #nav-links {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin-top: 25px;
         }
 
         .nav-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 15px;
+            text-decoration: none;
+            color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0; 
+            animation: fadeInUp 0.5s ease-out forwards;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .nav-item:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 12px 20px rgba(0, 123, 255, 0.15);
-            border-color: #007bff;
-            background: white;
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.5);
         }
+
+        .nav-item:nth-child(1) { animation-delay: 0.2s; }
+        .nav-item:nth-child(2) { animation-delay: 0.3s; }
+        .nav-item:nth-child(3) { animation-delay: 0.4s; }
+        .nav-item:nth-child(4) { animation-delay: 0.5s; }
+
+        .icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .name {
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
         button { 
             background: #007bff; 
             color: white; 
@@ -128,6 +161,21 @@
             padding: 10px 20px; 
             border-radius: 5px; 
             cursor: pointer; 
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        #greeting {
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            color: white !important;
         }
     </style>
 </head>
