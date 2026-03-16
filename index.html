@@ -13,12 +13,38 @@
             align-items: center; 
             height: 100vh; 
         }
-        .card { 
-            background: white; 
-            padding: 2rem; 
-            border-radius: 15px; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            width: 350px;
             text-align: center;
+        }
+
+        #nav-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .nav-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #444;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .nav-item:hover {
+            background: #007bff;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,123,255,0.3);
         }
         button { 
             background: #007bff; 
@@ -32,15 +58,16 @@
 </head>
 <body>
     <div class="card">
-        <h1>我的导航收藏夹</h1>
-        <div id="nav-links" style="display: grid; gap: 10px; margin-top: 20px;"></div>
+        <h1>收藏夹</h1>
+        <div id="nav-links"></div>
     </div>
 
     <script>
         const mySites = [
-            { name: "GitHub", url: "https://github.com" },
-            { name: "Bilibili", url: "https://bilibili.com" },
+            { name: "GitHub", url: "https://github.com", icon: "🐙" },
+            { name: "Bilibili", url: "https://bilibili.com", icon: "📺" },
             { name: "MDN 文档", url: "https://developer.mozilla.org" }
+            { name: "ChatGPT", url: "https://chatgpt.com", icon: "🤖" }
         ];
 
         const container = document.getElementById('nav-links');
@@ -48,14 +75,13 @@
         mySites.forEach(site => {
             const link = document.createElement('a');
             link.href = site.url;
-            link.innerText = site.name;
+            link.className = "nav-item";
             link.target = "_blank";
 
-            link.style.padding = "10px";
-            link.style.background = "#eee";
-            link.style.borderRadius = "8px";
-            link.style.textDecoration = "none";
-            link.style.color = "#333";
+            link.innerHTML = `
+                <span class="icon">${site.icon}</span>
+                <span class="name">${site.name}</span>
+            `;
 
             container.appendChild(link);
         });
