@@ -29,6 +29,17 @@
         body.dark-mode h1 {
             color: #ecf0f1;
         }
+
+        body.dark-mode .nav-item {
+            background: linear-gradient(145deg, #333, #222);
+            border-color: #444;
+            color: #ecf0f1;
+        }
+
+        .icon {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
         .card {
             background: white;
             padding: 30px;
@@ -78,7 +89,9 @@
 <body>
     <div class="card">
         <h1 id="title">收藏夹</h1>
-        <p id="greeting" style="color: #666; font-size: 0.9rem;"></p>
+        <p id="greeting" style="color: #666; font-size: 0.9rem;">
+
+        </p><div id="nav-links"></div>
     </div>
 
     <script>
@@ -92,31 +105,42 @@
         } else {
             greetingText = hour < 12 ? "☀️ 早上好！" : "☕ 下午好！";
         }
-        
+
         greetingElement.innerText = greetingText;
         
-        const mySites = [
-            { name: "GitHub", url: "https://github.com", icon: "🐙" },
-            { name: "Bilibili", url: "https://bilibili.com", icon: "📺" },
-            { name: "MDN 文档", url: "https://developer.mozilla.org", icon: "📚" },
-            { name: "Github", url: "https://github.com/NicoleR6", icon: ""},
-        ];
+        async function init() {
+            const hour = new Date().getHours();
+            const greetingElement = document.getElementById('greeting');
+            if (hour >= 18 || hour < 6) {
+                document.body.classList.add('dark-mode');
+                greetingElement.innerText = "🌙 晚上好！该整理今天的收获了";
+            } else {
+                greetingElement.innerText = hour < 12 ? "☀️ 早上好！" : "☕ 下午好！";
+            }
 
-        const container = document.getElementById('nav-links');
+            try {
+                const response = await fetch('data.json');
+                const mySites = await response.json();
+                
+                const container = document.getElementById('nav-links');
+                
+                mySites.forEach(site => {
+                    const link = document.createElement('a');
+                    link.href = site.url;
+                    link.className = "nav-item";
+                    link.target = "_blank";
+                    link.innerHTML = `
+                        <span class="icon">${site.icon || '🔗'}</span>
+                        <span class="name">${site.name}</span>
+                    `;
+                    container.appendChild(link);
+                });
+            } catch (err) {
+                console.error("加载数据失败:", err);
+            }
+        }
 
-        mySites.forEach(site => {
-            const link = document.createElement('a');
-            link.href = site.url;
-            link.className = "nav-item";
-            link.target = "_blank";
-
-            link.innerHTML = `
-                <span class="icon">${site.icon}</span>
-                <span class="name">${site.name}</span>
-            `;
-
-            container.appendChild(link);
-        });
+        init();
     </script>
 </body>
 </html>
