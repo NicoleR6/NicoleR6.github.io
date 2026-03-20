@@ -5,8 +5,12 @@
 }
 
 body {
-    background: url('https://source.unsplash.com/random/1920x1080?landscape,dark') no-repeat center center fixed;
+    background-color: #1a1a1a;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
     background-size: cover;
+    
     min-height: 100vh;
     margin: 0;
     display: flex;
@@ -14,7 +18,7 @@ body {
     align-items: center;
     font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
     color: var(--text-color);
-    transition: all 0.5s;
+    transition: background-image 0.8s ease-in-out;
 }
 
 body.dark-mode {
@@ -22,21 +26,21 @@ body.dark-mode {
 }
 
 .card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 24px;
     padding: 40px 30px;
     width: 380px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     text-align: center;
     animation: fadeInUp 0.8s ease-out forwards;
 }
 
 body.dark-mode .card {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 h1 {

@@ -11,6 +11,16 @@ async function init() {
         greetingElement.innerText = hour < 12 ? "☀️ 早上好！" : "☕ 下午好！";
     }
 
+    const randomBackgroundUrl = `https://source.unsplash.com/random/1920x1080?landscape,dark&_=${Date.now()}`;
+    
+    const imgElement = new Image();
+    imgElement.src = randomBackgroundUrl;
+    imgElement.onload = () => {
+        document.body.style.backgroundImage = `url('${randomBackgroundUrl}')`;
+    };
+    
+    console.log("已尝试加载随机背景图:", randomBackgroundUrl);
+
     try {
         const response = await fetch('data.json');
         const mySites = await response.json();
