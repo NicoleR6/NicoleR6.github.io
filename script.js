@@ -8,7 +8,7 @@ async function init() {
         document.body.classList.add('dark-mode');
         greetingElement.innerText = "🌙 晚上好！该整理今天的收获了";
     } else {
-        greetingElement.innerText = hour < 12 ? "☀️ 早上好！" : "☕ 下午好！";
+        greetingElement.innerText = hour < 12 ? "☀️ 早上好！开启元气满满的一天" : "☕ 下午好！记得喝点水休息一下";
     }
 
     const randomBackgroundUrl = `https://source.unsplash.com/random/1920x1080?landscape,dark&_=${Date.now()}`;
@@ -42,6 +42,7 @@ async function init() {
     } catch (err) {
         console.error("加载数据失败:", err);
     }
+
 
     searchInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
