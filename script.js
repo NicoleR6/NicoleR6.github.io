@@ -1,0 +1,46 @@
+async function init() {
+    const hour = new Date().getHours();
+    const greetingElement = document.getElementById('greeting');
+    const searchInput = document.getElementById('search-input');
+    const container = document.getElementById('nav-links');
+
+    if (hour >= 18 || hour < 6) {
+        document.body.classList.add('dark-mode');
+        greetingElement.innerText = "🌙 晚上好！该整理今天的收获了";
+    } else {
+        greetingElement.innerText = hour < 12 ? "☀️ 早上好！" : "☕ 下午好！";
+    }
+
+    try {
+        const response = await fetch('data.json');
+        const mySites = await response.json();
+        
+        mySites.forEach(site => {
+            const link = document.createElement('a');
+            link.href = site.url;
+            link.className = "nav-item";
+            link.target = "_blank";
+            link.innerHTML = `
+                <span class="icon">${site.icon || '🔗'}</span>
+                <div class="nav-info">
+                    <span class="name">${site.name}</span>
+                    <span class="desc">${site.desc || '暂无描述'}</span>
+                </div>
+            `;
+            container.appendChild(link);
+        });
+    } catch (err) {
+        console.error("加载数据失败:", err);
+    }
+
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const query = searchInput.value;
+            if (query) {
+                window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            }
+        }
+    });
+}
+
+window.onload = init;

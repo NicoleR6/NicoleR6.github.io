@@ -1,6 +1,21 @@
 [
-    { "name": "My Github", "url": "https://github.com/NicoleR6", "icon": "👤" },
-    { "name": "Bilibili", "url": "https://bilibili.com", "icon": "📺" },
-    { "name": "MDN 文档", "url": "https://developer.mozilla.org", "icon": "📚" },
+    { 
+        "name": "GitHub", 
+        "url": "https://github.com", 
+        "icon": "🐙",
+        "desc": "代码托管与全球开源社区" 
+    },
+    { 
+        "name": "Bilibili", 
+        "url": "https://bilibili.com", 
+        "icon": "📺",
+        "desc": "国内最受年轻人欢迎的视频站" 
+    },
+    { 
+        "name": "MDN 文档", 
+        "url": "https://developer.mozilla.org", 
+        "icon": "📚",
+        "desc": "权威的 Web 技术开发指南" 
+    },
     { "name": "Study library", "url": "https://www.preuni.xyz/", "icon": "📚" }
 ]
