@@ -4,28 +4,29 @@ async function init() {
     const searchInput = document.getElementById('search-input');
     const container = document.getElementById('nav-links');
 
-    if (hour >= 18 || hour < 6) {
-        document.body.classList.add('dark-mode');
-        greetingElement.innerText = "🌙 晚上好！该整理今天的收获了";
-    } else {
-        greetingElement.innerText = hour < 12 ? "☀️ 早上好！开启元气满满的一天" : "☕ 下午好！记得喝点水休息一下";
+    if (greetingElement) {
+        if (hour >= 18 || hour < 6) {
+            greetingElement.innerText = "🌙 晚上好！该整理今天的收获了";
+        } else {
+            greetingElement.innerText = hour < 12 ? "☀️ 早上好！开启元气满满的一天" : "☕ 下午好！记得喝点水休息一下";
+        }
     }
 
-    const randomBackgroundUrl = `https://source.unsplash.com/random/1920x1080?landscape,dark&_=${Date.now()}`;
-
+    const myBgUrl = 'wallpaper.png';
     const imgElement = new Image();
-    imgElement.src = randomBackgroundUrl;
+    imgElement.src = myBgUrl;
     imgElement.onload = () => {
-        document.body.style.backgroundImage = `url('${randomBackgroundUrl}')`;
+        document.body.style.backgroundImage = `url('${myBgUrl}')`;
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundAttachment = "fixed";
     };
-    
-    console.log("已尝试加载随机背景图:", randomBackgroundUrl);
 
     if (container) {
         try {
             const response = await fetch('data.json');
             const mySites = await response.json();
             
+            container.innerHTML = "";
             mySites.forEach(site => {
                 const link = document.createElement('a');
                 link.href = site.url;
@@ -57,4 +58,4 @@ async function init() {
     }
 }
 
-window.onload = init;
+document.addEventListener('DOMContentLoaded', init);
