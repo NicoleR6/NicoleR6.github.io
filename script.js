@@ -12,13 +12,17 @@ async function init() {
         }
     }
 
-    const myBgUrl = 'wallpaper.png';
+    const myBgUrl = 'images/wallpaper.png';
     const imgElement = new Image();
     imgElement.src = myBgUrl;
     imgElement.onload = () => {
         document.body.style.backgroundImage = `url('${myBgUrl}')`;
-        document.body.style.backgroundSize = "cover";
-        document.body.style.backgroundAttachment = "fixed";
+        document.body.style.opacity = "0";
+        
+        requestAnimationFrame(() => {
+            document.body.style.transition = "opacity 1.5s ease";
+            document.body.style.opacity = "1";
+        });
     };
 
     if (container) {
@@ -56,6 +60,14 @@ async function init() {
             }
         });
     }
+    document.addEventListener('mousemove', (e) => {
+        const x = (window.innerWidth / 2 - e.pageX) / 40;
+        const y = (window.innerHeight / 2 - e.pageY) / 40;
+        
+        if (container) {
+            container.style.transform = `rotateX(${y}deg) rotateY(${-x}deg)`;
+        }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', init);
