@@ -17,5 +17,11 @@
         "icon": "📚",
         "desc": "权威的 Web 技术开发指南" 
     },
-    { "name": "Study library", "url": "https://www.preuni.xyz/", "icon": "📚" }
+    { "name": "Study library", "url": "https://www.preuni.xyz/", "icon": "📚" },
+    { 
+        "name": "comp learning note", 
+        "url": "article.html", 
+        "icon": "📝",
+        "desc": "一些基础知识的引入与讲解" 
+    }
 ]

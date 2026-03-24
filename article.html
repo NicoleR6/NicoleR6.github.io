@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章标题 - NicoleR6</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 针对文章页的布局覆盖 */
+        .card {
+            width: 95%;
+            max-width: 900px; /* 宽度调大 */
+            text-align: left; /* 内容左对齐 */
+            padding: 50px 40px;
+            margin: 40px 20px;
+            height: auto;
+            overflow-y: visible;
+        }
+
+        /* 文章主体内容样式 */
+        .content {
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .content h2 {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        /* 代码块样式复刻 */
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: 'Fira Code', 'Cascadia Code', monospace;
+        }
+
+        code {
+            color: #ff79c6; /* 仿 Dracula 主题色 */
+        }
+
+        .meta-info {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            margin-bottom: 30px;
+        }
+
+        .back-nav {
+            margin-bottom: 20px;
+            display: block;
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <a href="index.html" class="back-nav">← 返回主页</a>
+        
+        <div class="meta-info">发布于 2026年3月24日 • 阅读时间约 5 分钟</div>
+        
+        <h1>我的第一篇技术随笔：理解指针</h1>
+        
+        <div class="content">
+            <p>这是我的第一个网页内容。在这里我可以详细描述我想表达的东西...</p>
+            
+            <h2>1. 什么是核心概念？</h2>
+            <p>你可以像写文档一样在这里自由发挥。为了让它看起来专业，我们可以加入代码示例：</p>
+            
+            <pre><code>// 这是一个简单的 C 代码示例
+int main() {
+    int a = 10;
+    int *p = &a;
+    printf("Value: %d", *p);
+    return 0;
+}</code></pre>
+
+            <h2>2. 视觉细节</h2>
+            <p>注意看，背景图依然在背后流动，而毛玻璃卡片让文字在复杂的背景上依然清晰可见。</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

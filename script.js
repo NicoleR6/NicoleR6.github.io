@@ -12,7 +12,7 @@ async function init() {
     }
 
     const randomBackgroundUrl = `https://source.unsplash.com/random/1920x1080?landscape,dark&_=${Date.now()}`;
-    
+
     const imgElement = new Image();
     imgElement.src = randomBackgroundUrl;
     imgElement.onload = () => {
@@ -21,37 +21,40 @@ async function init() {
     
     console.log("已尝试加载随机背景图:", randomBackgroundUrl);
 
-    try {
-        const response = await fetch('data.json');
-        const mySites = await response.json();
-        
-        mySites.forEach(site => {
-            const link = document.createElement('a');
-            link.href = site.url;
-            link.className = "nav-item";
-            link.target = "_blank";
-            link.innerHTML = `
-                <span class="icon">${site.icon || '🔗'}</span>
-                <div class="nav-info">
-                    <span class="name">${site.name}</span>
-                    <span class="desc">${site.desc || '暂无描述'}</span>
-                </div>
-            `;
-            container.appendChild(link);
-        });
-    } catch (err) {
-        console.error("加载数据失败:", err);
+    if (container) {
+        try {
+            const response = await fetch('data.json');
+            const mySites = await response.json();
+            
+            mySites.forEach(site => {
+                const link = document.createElement('a');
+                link.href = site.url;
+                link.className = "nav-item";
+                link.target = "_blank";
+                link.innerHTML = `
+                    <span class="icon">${site.icon || '🔗'}</span>
+                    <div class="nav-info">
+                        <span class="name">${site.name}</span>
+                        <span class="desc">${site.desc || '暂无描述'}</span>
+                    </div>
+                `;
+                container.appendChild(link);
+            });
+        } catch (err) {
+            console.error("加载数据失败:", err);
+        }
     }
 
-
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            const query = searchInput.value;
-            if (query) {
-                window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+    if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const query = searchInput.value;
+                if (query) {
+                    window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 window.onload = init;
