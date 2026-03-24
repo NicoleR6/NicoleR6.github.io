@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章标题 - NicoleR6</title>
+    <title>c_language_intro</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* 针对文章页的布局覆盖 */
         .card {
             width: 95%;
-            max-width: 900px; /* 宽度调大 */
-            text-align: left; /* 内容左对齐 */
+            max-width: 900px;
+            text-align: left;
             padding: 50px 40px;
             margin: 40px 20px;
             height: auto;
             overflow-y: visible;
         }
 
-        /* 文章主体内容样式 */
         .content {
             line-height: 1.8;
             font-size: 1.05rem;
@@ -30,7 +28,6 @@
             margin-top: 40px;
         }
 
-        /* 代码块样式复刻 */
         pre {
             background: rgba(0, 0, 0, 0.3);
             padding: 15px;
@@ -41,7 +38,7 @@
         }
 
         code {
-            color: #ff79c6; /* 仿 Dracula 主题色 */
+            color: #ff79c6;
         }
 
         .meta-info {
@@ -56,32 +53,95 @@
             color: #007bff;
             text-decoration: none;
         }
+        .terminal-block {
+            position: relative;
+            background: #1a1a1b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin: 30px 0;
+            padding-top: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminal-block::before {
+            content: "bash";
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.75rem;
+            padding: 4px 15px;
+            border-bottom-right-radius: 12px;
+            border-top-left-radius: 10px;
+            font-family: 'Fira Code', monospace;
+            text-transform: lowercase;
+        }
+
+        .terminal-block pre {
+            margin: 0;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        .terminal-block code {
+            font-family: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+            font-size: 0.95rem;
+            color: #d1d1d1;
+            line-height: 1.6;
+            display: block;
+            white-space: pre;
+        }
     </style>
 </head>
 <body>
     <div class="card">
-        <a href="index.html" class="back-nav">← 返回主页</a>
+        <div class="meta-info">发布于 2026年3月24日</div>
         
-        <div class="meta-info">发布于 2026年3月24日 • 阅读时间约 5 分钟</div>
-        
-        <h1>我的第一篇技术随笔：理解指针</h1>
+        <h1>如果你是UNSW的计算机学生，你可以通过vscode直接连接学校已经配置好的编译环境可以通过此链接进入-></h1>
+
+        <a href="https://abiram.me/cse-setup/" target="_blank" class="link-module">
+            <div class="link-text">
+                <p>由 Abiram 提供，包含 SSH Config 与密钥配置详解</p>
+            </div>
+        </a>
+
+        <p>在设置完zid之后可以直接设置密码，在zid下面的password栏里，这样就不需要在每次登陆时都输入密码了。</p>
         
         <div class="content">
-            <p>这是我的第一个网页内容。在这里我可以详细描述我想表达的东西...</p>
+            <p>在完成初步设置之后，我们则直接进入c语言的学习</p>
             
-            <h2>1. 什么是核心概念？</h2>
-            <p>你可以像写文档一样在这里自由发挥。为了让它看起来专业，我们可以加入代码示例：</p>
+            <h2>1. 对于变量的概念，以及在c语言中如何通过终端打印（输出）出我们想要输出的内容</h2>
+            <p>在c语言和我们后面会学到的其他语言中，数据类型大致可以分为一下几种：
+                1.整数类型（整型）
+                2.小数类型（浮点型）又称之为浮点数类型
+                3.字符类型，主要用于存储字母和单个符号
+            </p>
             
-            <pre><code>// 这是一个简单的 C 代码示例
-int main() {
-    int a = 10;
-    int *p = &a;
-    printf("Value: %d", *p);
-    return 0;
-}</code></pre>
+            <pre><code>
+            #include <stdio.h>
+            int main() {
+                int a = 11; // 整数类型
+                char b = 'N'; // 字符类型
+                double a = 1.1; // 小数类型
+            }</code></pre>
 
-            <h2>2. 视觉细节</h2>
-            <p>注意看，背景图依然在背后流动，而毛玻璃卡片让文字在复杂的背景上依然清晰可见。</p>
+            <p>这是我们在初始学习中会比较常用到的数据类型，在每一行的开头都是，数据类型的名字，比如：int。
+            接着后面写的就是变量的名字，这些是你自己所定义的想写什么就写什么，等于号后面就是，你想赋给他的数据类型。
+            需要注意的就是在做字符类型赋值时需要用到单引号包住字母或符号。
+            </p>
+            <p>对于在c语言中打印内容，我们会先学习用到printf</p>
+
+            <pre><code>
+            #include <stdio.h>
+            int main() {
+                printf("%d\n", a);
+            }
+            </code></pre>
+            <div class="terminal-block">
+                <pre><code>nicole@cse: 11
+                </code></pre>
+            </div>
         </div>
     </div>
 
