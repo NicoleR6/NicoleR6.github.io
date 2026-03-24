@@ -36,6 +36,7 @@ async function init() {
                 link.href = site.url;
                 link.className = "nav-item";
                 link.target = "_blank";
+                link.rel = "noopener noreferrer";
                 link.innerHTML = `
                     <span class="icon">${site.icon || '🔗'}</span>
                     <div class="nav-info">
