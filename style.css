@@ -32,6 +32,8 @@ body {
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     text-align: center;
     animation: fadeInUp 0.8s ease-out forwards;
+    overflow: visible;
+    transform-style: preserve-3d;
 }
 
 h1 {
@@ -98,13 +100,14 @@ h1 {
 }
 
 .nav-item:hover {
-    transform: translateZ(20px) rotateX(5deg) rotateY(-5deg);
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateZ(50px) rotateX(10deg) rotateY(-10deg); 
+    
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(0, 210, 255, 0.6);
     
     box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.4),
-        0 0 20px rgba(0, 210, 255, 0.2);
+        0 30px 60px rgba(0, 0, 0, 0.5),
+        0 0 25px rgba(0, 210, 255, 0.3);
 }
 
 .nav-item::after {
@@ -123,6 +126,21 @@ h1 {
 
 .nav-item:hover::after {
     opacity: 1;
+}
+
+.nav-item:hover .icon {
+    transform: translateZ(20px);
+    transition: transform 0.5s ease;
+}
+
+.nav-item:hover .nav-info {
+    transform: translateZ(10px);
+    transition: transform 0.5s ease;
+}
+
+.icon, .nav-info {
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
 }
 
 .nav-info { margin-left: 15px; display: flex; flex-direction: column; }
