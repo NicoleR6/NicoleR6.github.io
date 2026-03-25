@@ -17,7 +17,7 @@
         "icon": "📚",
         "desc": "权威的 Web 技术开发指南" 
     },
-    { "name": "Study library", "url": "https://www.preuni.xyz/", "icon": "📚" },
+    { "name": "Study library", "url": "https://www.preuni.xyz/", "icon": "📚" , "desc": "一些关于UNSW的学习指南，开发者是UNSW的在读学生"},
     { 
         "name": "c-program intro", 
         "url": "article.html", 

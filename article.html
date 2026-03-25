@@ -36,7 +36,7 @@
         }
 
         .content a:hover {
-            color: #ffffff;
+            color: #000000;
             background: rgba(0, 255, 204, 0.2);
         }
 
@@ -50,7 +50,7 @@
         }
 
         code {
-            color: #ff79c6;
+            color: #fa7000;
         }
 
         .meta-info {
@@ -128,20 +128,11 @@
         
         <div class="content">
             <p>在完成初步设置之后，我们则直接进入c语言的学习</p>
-            
-            <h2>1. 对于变量的概念，以及在c语言中如何通过终端打印（输出）出我们想要输出的内容</h2>
-            <p>在c语言和我们后面会学到的其他语言中，数据类型大致可以分为一下几种：
-                1.整数类型（整型）
-                2.小数类型（浮点型）又称之为浮点数类型
-                3.字符类型，主要用于存储字母和单个符号
-            </p>
-            
-            <pre><code>#include &lt;stdio.h&gt;
-int main() {
-    int a = 11; // 整数类型
-    char b = 'N'; // 字符类型
-    double a = 1.1; // 小数类型
-}</code></pre>
+
+            <p>在c语言中我们经常能在代码开头看到include这样的字眼，这是用来引用函数库的（功能类似于在其他语言中的import）因为在c语言中他本身不包含任何函数，
+                他本身只包含语法（if for while还有逻辑运算符），像printf和scanf这样的函数都是存在函数库了的如果我们需要使用他们就必须引用对应的函数库，
+                而在我们刚开始学习c语言时会经常用到<stdio.h>就是因为他里面包含这printf和scanf。
+                </p>
 
             <p>这是我们在初始学习中会比较常用到的数据类型，在每一行的开头都是，数据类型的名字，比如：int。
             接着后面写的就是变量的名字，这些是你自己所定义的想写什么就写什么，等于号后面就是，你想赋给他的数据类型。
@@ -151,12 +142,40 @@ int main() {
 
             <pre><code>#include &lt;stdio.h&gt;
 int main() {
-    printf("%d\n", a);
+    printf("Hello World!\n");
 }</code></pre>
             <div class="terminal-block">
-                <pre><code>nicole@cse: 11
+                <pre><code> nicole@cse: Hello World!
+                    nicole@cse: 
                 </code></pre>
             </div>
+
+            <p>printf函数的用法在括号中有两段内容printf("",), 分别是逗号前带引号的部分和逗号后不带引号的部分，在引号中的内容就是我们要打印的内容了，
+                就像上面的实例一样，'\n'这个东西是我们在c语言中会经常用到的换行符号，他的作用实在他的位置做一个换行然后接着输出后面的东西，就像这样</p>
+
+            <pre><code>#include &lt;stdio.h&gt;
+int main() {
+    printf("Hello\nWorld!\n");
+}</code></pre>
+            <div class="terminal-block">
+                <pre><code> nicole@cse: Hello
+                    World!
+                    nicole@cse: 
+                </code></pre>
+            </div>
+            
+            <h2>对于变量的概念，以及在c语言中如何通过终端打印（输出）出我们想要输出的内容</h2>
+            <p>在c语言和我们后面会学到的其他语言中，数据类型大致可以分为一下几种：</p>
+            <p>    1.整数类型（整型）</p>
+            <p>    2.小数类型（浮点型）又称之为浮点数类型 </p>
+            <p>    3.字符类型，主要用于存储字母和单个符号 </p>
+            
+            <pre><code>#include &lt;stdio.h&gt;
+int main() {
+    int a = 11; // 整数类型
+    char b = 'N'; // 字符类型
+    double a = 1.1; // 小数类型
+}</code></pre>
         </div>
     </div>
 
