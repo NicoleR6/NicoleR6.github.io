@@ -19,7 +19,7 @@
     },
     { "name": "Study library", "url": "https://www.preuni.xyz/", "icon": "📚" },
     { 
-        "name": "comp learning note", 
+        "name": "c-program intro", 
         "url": "article.html", 
         "icon": "📝",
         "desc": "一些基础知识的引入与讲解" 

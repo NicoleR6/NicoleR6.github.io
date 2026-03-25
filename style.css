@@ -7,7 +7,7 @@
 
 body {
     background-color: #1a1a1a;
-    background-image: url('images/wallpaper.png');
+    background-image: url('images/wallpaper.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -28,33 +28,32 @@ body {
     border-radius: 28px;
     padding: 40px 25px;
     width: 90%;
-    max-width: 600px; 
+    max-width: 800px; 
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     text-align: center;
-    overflow: visible;
     transform-style: preserve-3d;
 }
 
 h1 {
     font-size: 1.8rem;
     color: white;
-    margin: 0 0 5px 0;
+    margin: 0 0 10px 0;
     text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 #greeting {
     font-weight: 300;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     color: white !important;
 }
 
-.search-box { margin-bottom: 30px; }
+.search-box { margin-bottom: 35px; }
 #search-input {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
-    padding: 12px 15px;
-    width: 100%;
+    padding: 12px 20px;
+    width: 80%;
     color: white;
     outline: none;
     transition: 0.3s;
@@ -62,11 +61,10 @@ h1 {
 
 #nav-links {
     perspective: 1200px;
-    display: flex;
-    flex-direction: row; 
-    flex-wrap: wrap;     
-    justify-content: center;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    gap: 20px;
+    padding: 10px;
     transition: transform 0.2s ease-out;
 }
 
@@ -76,10 +74,8 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
-    width: 130px;
-    height: 130px;
-    padding: 15px;
+    aspect-ratio: 1 / 1; 
+    padding: 20px;
     box-sizing: border-box;
 
     background: rgba(255, 255, 255, 0.08);
@@ -89,44 +85,40 @@ h1 {
     text-decoration: none;
     
     color: var(--purple-text) !important; 
-    
     transform-style: preserve-3d;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .nav-item:hover {
     transform: translateZ(30px);
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
     border-color: var(--purple-text);
-    color: #5D47E3 !important; 
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 15px var(--purple-glow);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3), 0 0 20px var(--purple-glow);
 }
 
 .icon {
-    font-size: 32px;
-    margin-bottom: 8spx;
+    font-size: 36px;
+    margin-bottom: 12px;
     display: block;
 }
 
 .nav-info {
-    margin-left: 0 !important; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-left: 0 !important;
+    text-align: center;
     width: 100%;
 }
 
 .nav-info .name {
     font-size: 0.95rem;
     font-weight: 700;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
     display: block;
 }
 
 .nav-info .desc {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     opacity: 0.8;
-    line-height: 1.2;
+    line-height: 1.3;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -143,6 +135,3 @@ h1 {
     transition: 0.5s;
 }
 .nav-item:hover::after { opacity: 1; }
-
-.nav-item:hover .icon { transform: translateZ(20px); }
-.nav-item:hover .nav-info { transform: translateZ(10px); }
