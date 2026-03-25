@@ -12,13 +12,6 @@ async function init() {
         }
     }
 
-    const myBgUrl = 'images/wallpaper.jpg'; 
-    const imgElement = new Image();
-    imgElement.src = myBgUrl;
-    imgElement.onload = () => {
-        document.body.style.backgroundImage = `url('${myBgUrl}')`;
-    };
-
     if (container) {
         try {
             const response = await fetch('data.json');
@@ -38,6 +31,23 @@ async function init() {
                         <span class="desc">${site.desc || '暂无描述'}</span>
                     </div>
                 `;
+
+                link.addEventListener('mousemove', (e) => {
+                    const rect = link.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const rotateX = ((y - rect.height / 2) / rect.height) * -20;
+                    const rotateY = ((x - rect.width / 2) / rect.width) * 20;
+                    
+                    link.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(50px) translateY(-10px)`;
+                });
+
+                link.addEventListener('mouseleave', () => {
+                    link.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) translateY(0px)`;
+                });
+                // ------------------------------
+
                 container.appendChild(link);
             });
         } catch (err) {
@@ -55,14 +65,6 @@ async function init() {
             }
         });
     }
-
-    document.addEventListener('mousemove', (e) => {
-        if (!container) return;
-        const x = (window.innerWidth / 2 - e.pageX) / 80;
-        const y = (window.innerHeight / 2 - e.pageY) / 80;
-        
-        container.style.transform = `rotateX(${y}deg) rotateY(${-x}deg)`;
-    });
 }
 
 document.addEventListener('DOMContentLoaded', init);

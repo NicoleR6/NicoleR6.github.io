@@ -35,7 +35,7 @@ body {
 
 h1 {
     font-size: 2.2rem;
-    color: purple;
+    color: white;
     margin: 0 0 10px 0;
     text-shadow: 0 2px 15px rgba(0,0,0,0.5);
 }
@@ -67,12 +67,10 @@ h1 {
 }
 
 #nav-links {
-    perspective: 1200px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
     gap: 25px; 
     padding: 10px;
-    transition: transform 0.2s ease-out;
 }
 
 .nav-item {
@@ -81,7 +79,6 @@ h1 {
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    
     min-height: 160px;
     padding: 22px;
     box-sizing: border-box;
@@ -95,12 +92,11 @@ h1 {
     
     color: var(--purple-text) !important;
     transform-style: preserve-3d;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), background 0.3s;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .nav-item:hover {
-    transform: translateZ(50px) translateY(-10px);
     background: rgba(255, 255, 255, 0.18);
     border-color: var(--purple-text);
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
@@ -123,7 +119,6 @@ h1 {
     display: block;
     margin-bottom: 8px;
     letter-spacing: 1px;
-    text-shadow: 0 1px 5px rgba(0,0,0,0.1);
 }
 
 .nav-info .desc {
