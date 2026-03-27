@@ -89,6 +89,9 @@ h1 {
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.3s, box-shadow 0.3s;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     pointer-events: none;
+    opacity: 1;
+    display: flex;
+    visibility: visible;
 }
 
 .nav-item:hover {
@@ -102,6 +105,12 @@ h1 {
     display: block;
     width: 100%;
     perspective: 1000px;
+}
+
+.nav-anchor:hover .nav-item {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--purple-text);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3), 0 0 15px var(--purple-glow);
 }
 
 .icon { font-size: 32px; margin-bottom: 15px; }
