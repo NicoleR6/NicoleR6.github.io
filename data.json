@@ -18,6 +18,12 @@
         "desc": "权威的 Web 技术开发指南" 
     },
     { "name": "Study library", "url": "https://www.preuni.xyz/", "icon": "📚" , "desc": "一些关于UNSW的学习指南，开发者是UNSW的在读学生"},
+    {
+        "name": "C Programming",
+        "icon": "🛠️",
+        "url": "cprogram.html", 
+        "desc": "进入专用的 C 语言知识库，查看核心概念与代码实现。"
+    },
     { 
         "name": "c-program intro", 
         "url": "article.html", 
