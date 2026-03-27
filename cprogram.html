@@ -19,20 +19,35 @@
         }
 
         .nav-item {
+            position: relative;
             display: block;
             width: 100%;
-            box-sizing: border-box;
-            pointer-events: auto; 
-            
-            text-align: left;
-            cursor: pointer;
+            padding: 22px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 18px;
-            padding: 22px;
-            transition: transform 0.1s ease-out, background 0.3s;
+            text-decoration: none;
+            cursor: pointer;
             transform-style: preserve-3d;
+            transition: transform 0.1s ease-out, background 0.3s;
+        }
+
+        .nav-item::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            background: transparent;
+        }
+
+        .nav-info {
+            position: relative;
+            z-index: 1;
+            pointer-events: none;
         }
 
         .name { font-weight: 700; font-size: 1.2rem; margin-bottom: 8px; display: block; }
@@ -68,13 +83,12 @@
                     const data = await response.json();
                     container.innerHTML = "";
                     
-                   data.forEach(item => {
+                    data.forEach(item => {
                     const link = document.createElement('a');
                     link.href = item.url;
                     link.className = "nav-item";
                     link.target = "_blank";
-                    link.style.transition = "transform 0.1s ease-out, background 0.3s";
-
+                    
                     link.innerHTML = `
                         <div class="nav-info">
                             <span class="name">${item.icon || ''} ${item.name}</span>
@@ -83,19 +97,18 @@
                     `;
 
                     link.addEventListener('mousemove', (e) => {
-                        const x = e.offsetX;
-                        const y = e.offsetY;
-                        const width = link.offsetWidth;
-                        const height = link.offsetHeight;
+                        const rect = link.getBoundingClientRect();
+                        
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
 
-                        const rotateX = ((y - height / 2) / height) * -8;
-                        const rotateY = ((x - width / 2) / width) * 8;
+                        const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -6;
+                        const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 6;
 
                         link.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
                     });
 
                     link.addEventListener('mouseleave', () => {
-                        link.style.transition = "transform 0.5s ease";
                         link.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
                     });
 
