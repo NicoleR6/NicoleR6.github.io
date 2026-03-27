@@ -19,12 +19,17 @@ async function init() {
             
             container.innerHTML = "";
             mySites.forEach(site => {
-                const link = document.createElement('a');
-                link.href = site.url;
-                link.className = "nav-item";
-                link.target = "_blank";
-                link.rel = "noopener noreferrer";
-                link.innerHTML = `
+                const anchor = document.createElement('a');
+                anchor.href = site.url;
+                anchor.className = "nav-anchor";
+                
+                anchor.target = "_self"; 
+                anchor.rel = "noopener noreferrer";
+
+                const item = document.createElement('div');
+                item.className = "nav-item";
+                item.style.transition = "transform 0.15s ease-out, background 0.3s";
+                item.innerHTML = `
                     <span class="icon">${site.icon || '🔗'}</span>
                     <div class="nav-info">
                         <span class="name">${site.name}</span>
@@ -32,33 +37,32 @@ async function init() {
                     </div>
                 `;
 
-                link.addEventListener('mousemove', (e) => {
-                    const rect = link.getBoundingClientRect();
-                    
+                anchor.appendChild(item);
+
+                anchor.addEventListener('mousemove', (e) => {
+                    const rect = anchor.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
                     
                     const centerX = rect.width / 2;
                     const centerY = rect.height / 2;
-                    const rotateX = (-(y - centerY) / centerY) * 15;
-                    const rotateY = ((x - centerX) / centerX) * 15;
                     
-                    link.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(40px) translateY(-5px)`;
+                    const rotateX = (-(y - centerY) / centerY) * 10;
+                    const rotateY = ((x - centerX) / centerX) * 10;
+                    
+                    item.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
                 });
 
-                link.addEventListener('mouseleave', () => {
-                    link.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) translateY(0px)`;
+                anchor.addEventListener('mouseleave', () => {
+                    item.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
                 });
 
-                container.appendChild(link);
+                container.appendChild(anchor);
             });
         } catch (err) {
             console.error("加载数据失败:", err);
-    
-            const container = document.getElementById('nav-links');
-
             container.innerHTML = `
-                <div class="error-state" style="grid-column: 1 / -1; padding: 50px;">
+                <div class="error-state" style="grid-column: 1 / -1; padding: 50px; text-align: center;">
                     <img src="images/error-frieren.png" alt="Error" style="width: 200px; opacity: 0.8;">
                     <p style="color: white; margin-top: 20px;">哎呀，魔法失效了（数据加载失败）</p>
                     <button onclick="location.reload()" style="background: var(--purple-text); border: none; padding: 8px 16px; border-radius: 8px; color: white; cursor: pointer;">重试</button>
@@ -78,5 +82,3 @@ async function init() {
         });
     }
 }
-
-document.addEventListener('DOMContentLoaded', init);
