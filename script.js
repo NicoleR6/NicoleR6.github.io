@@ -54,6 +54,16 @@ async function init() {
             });
         } catch (err) {
             console.error("加载数据失败:", err);
+    
+            const container = document.getElementById('nav-links');
+
+            container.innerHTML = `
+                <div class="error-state" style="grid-column: 1 / -1; padding: 50px;">
+                    <img src="images/error-frieren.png" alt="Error" style="width: 200px; opacity: 0.8;">
+                    <p style="color: white; margin-top: 20px;">哎呀，魔法失效了（数据加载失败）</p>
+                    <button onclick="location.reload()" style="background: var(--purple-text); border: none; padding: 8px 16px; border-radius: 8px; color: white; cursor: pointer;">重试</button>
+                </div>
+            `;
         }
     }
 
