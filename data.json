@@ -23,11 +23,5 @@
         "icon": "🛠️",
         "url": "cprogram.html", 
         "desc": "进入专用的 C 语言知识库，查看核心概念与代码实现。"
-    },
-    { 
-        "name": "c-program intro", 
-        "url": "article.html", 
-        "icon": "📝",
-        "desc": "一些基础知识的引入与讲解" 
     }
 ]
