@@ -1,7 +1,7 @@
 [
     { 
-        "name": "C Program Intro", 
-        "url": "https://nicoler6.github.io/article.html", 
+        "name": "C_Program Intro", 
+        "url": "article.html", 
         "icon": "📝",
         "desc": "一些基础知识的引入与讲解" 
     }
