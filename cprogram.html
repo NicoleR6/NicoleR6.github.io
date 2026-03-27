@@ -18,19 +18,9 @@
             display: block;
             width: 100%;
             box-sizing: border-box;
-            
-            text-align: left;
-            cursor: pointer;
-            text-decoration: none;
-            
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 18px;
-            padding: 22px;
-            
-            transform-style: preserve-3d;
-            transition: transform 0.4s ease, background 0.3s;
+            margin: 0 0 20px 0;
+            transform-origin: center;
+            backface-visibility: hidden;
         }
 
         .name { font-weight: 700; font-size: 1.2rem; margin-bottom: 8px; display: block; }
@@ -66,34 +56,42 @@
                     const data = await response.json();
                     container.innerHTML = "";
                     
-                    data.forEach(item => {
-                        const link = document.createElement('a');
-                        link.href = item.url;
-                        link.className = "nav-item";
-                        link.target = "_blank";
-                        link.innerHTML = `
-                            <div class="nav-info">
-                                <span class="name">${item.icon || ''} ${item.name}</span>
-                                <div class="desc">${item.desc}</div>
-                            </div>
-                        `;
+                   data.forEach(item => {
+                    const link = document.createElement('a');
+                    link.href = item.url;
+                    link.className = "nav-item";
+                    link.target = "_blank";
+                    link.style.transition = "transform 0.1s ease-out, background 0.3s";
 
-                        // 绑定 3D 效果
-                        link.addEventListener('mousemove', (e) => {
-                            const rect = link.getBoundingClientRect();
-                            const x = e.clientX - rect.left;
-                            const y = e.clientY - rect.top;
-                            const rotateX = ((y - rect.height / 2) / rect.height) * -10;
-                            const rotateY = ((x - rect.width / 2) / rect.width) * 10;
-                            link.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
-                        });
+                    link.innerHTML = `
+                        <div class="nav-info">
+                            <span class="name">${item.icon || ''} ${item.name}</span>
+                            <div class="desc">${item.desc}</div>
+                        </div>
+                    `;
 
-                        link.addEventListener('mouseleave', () => {
-                            link.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
-                        });
+                    link.addEventListener('mousemove', (e) => {
+                        const rect = link.getBoundingClientRect();
+                        
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+                        
+                        const mouseX = e.clientX - centerX;
+                        const mouseY = e.clientY - centerY;
 
-                        container.appendChild(link);
+                        const rotateX = (mouseY / (rect.height / 2)) * -5;
+                        const rotateY = (mouseX / (rect.width / 2)) * 5;
+
+                        link.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
                     });
+
+                    link.addEventListener('mouseleave', () => {
+                        link.style.transition = "transform 0.5s ease";
+                        link.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                    });
+
+                    container.appendChild(link);
+                });
                 } catch (err) {
                     console.error(err);
                     container.innerHTML = `<p style='color:white;'>数据加载失败: ${err.message}</p>`;
