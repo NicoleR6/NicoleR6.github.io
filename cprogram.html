@@ -14,44 +14,35 @@
             width: 100%;
         }
 
-        .nav-item * {
-            pointer-events: none; 
+        .nav-anchor {
+            width: 100%;
+            perspective: 1000px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
         }
 
         .nav-item {
             position: relative;
-            display: block;
             width: 100%;
             padding: 22px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 18px;
-            text-decoration: none;
-            cursor: pointer;
+            pointer-events: none; 
             transform-style: preserve-3d;
-            transition: transform 0.1s ease-out, background 0.3s;
+            transition: transform 0.15s ease-out, background 0.3s;
+            box-sizing: border-box;
         }
 
-        .nav-item::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 10;
-            background: transparent;
+        .nav-anchor:hover .nav-item {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
-        .nav-info {
-            position: relative;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .name { font-weight: 700; font-size: 1.2rem; margin-bottom: 8px; display: block; }
-        .desc { font-size: 0.9rem; line-height: 1.5; }
+        .name { font-weight: 700; font-size: 1.2rem; margin-bottom: 8px; display: block; color: white; }
+        .desc { font-size: 0.9rem; line-height: 1.5; color: rgba(255, 255, 255, 0.8); }
         
         .back-link {
             display: block;
@@ -63,64 +54,64 @@
         }
     </style>
 </head>
-    <body>
-        <div class="card">
-            <a href="index.html" class="back-link">← 返回主页</a>
-            
-            <h1 style="color: white;">C Programming</h1>
-            <div id="greeting" style="color: white !important;">📚 核心知识点库</div>
-            
-            <div id="c-knowledge-container"></div>
-        </div>
+<body>
+    <div class="card">
+        <a href="index.html" class="back-link">← 返回主页</a>
+        <h1 style="color: white;">C Programming</h1>
+        <div id="greeting" style="color: white !important;">📚 核心知识点库</div>
+        <div id="c-knowledge-container"></div>
+    </div>
 
-        <script>
-            async function loadCData() {
-                const container = document.getElementById('c-knowledge-container');
-                try {
-                    const response = await fetch('./c-data.json');
-                    if (!response.ok) throw new Error('找不到 c-data.json');
+    <script>
+        async function loadCData() {
+            const container = document.getElementById('c-knowledge-container');
+            try {
+                const response = await fetch('./c-data.json');
+                if (!response.ok) throw new Error('找不到 c-data.json');
+                
+                const data = await response.json();
+                container.innerHTML = "";
+                
+                data.forEach(item => {
+                    const anchor = document.createElement('a');
+                    anchor.href = item.url;
+                    anchor.className = "nav-anchor";
+                    anchor.target = "_blank";
                     
-                    const data = await response.json();
-                    container.innerHTML = "";
-                    
-                    data.forEach(item => {
-                    const link = document.createElement('a');
-                    link.href = item.url;
-                    link.className = "nav-item";
-                    link.target = "_blank";
-                    
-                    link.innerHTML = `
+                    const inner = document.createElement('div');
+                    inner.className = "nav-item";
+                    inner.innerHTML = `
                         <div class="nav-info">
                             <span class="name">${item.icon || ''} ${item.name}</span>
                             <div class="desc">${item.desc}</div>
                         </div>
                     `;
 
-                    link.addEventListener('mousemove', (e) => {
-                        const rect = link.getBoundingClientRect();
-                        
+                    anchor.appendChild(inner);
+
+                    anchor.addEventListener('mousemove', (e) => {
+                        const rect = anchor.getBoundingClientRect();
                         const x = e.clientX - rect.left;
                         const y = e.clientY - rect.top;
 
-                        const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -6;
-                        const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 6;
+                        const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -7;
+                        const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 7;
 
-                        link.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                        inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
                     });
 
-                    link.addEventListener('mouseleave', () => {
-                        link.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                    anchor.addEventListener('mouseleave', () => {
+                        inner.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
                     });
 
-                    container.appendChild(link);
+                    container.appendChild(anchor);
                 });
-                } catch (err) {
-                    console.error(err);
-                    container.innerHTML = `<p style='color:white;'>数据加载失败: ${err.message}</p>`;
-                }
+            } catch (err) {
+                console.error(err);
+                container.innerHTML = `<p style='color:white;'>数据加载失败: ${err.message}</p>`;
             }
-
-            document.addEventListener('DOMContentLoaded', loadCData);
-        </script>
-    </body>
+        }
+        document.addEventListener('DOMContentLoaded', loadCData);
+    </script>
+</body>
 </html>
