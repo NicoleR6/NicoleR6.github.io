@@ -6,34 +6,109 @@
     <title>C Program Knowledge Base</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .content-body {
-            text-align: left;
-            max-width: 900px;
-            margin: 0 auto;
+        body {
+            background-color: rgba(0, 0, 0, 0.6); 
+            background-image: url('images/feilun.jpg');
+            background-blend-mode: multiply;
+            
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
+        .card {
+            background: transparent;
+            border: none;
+            padding: 40px 25px;
+            width: 90%;
+            max-width: 1000px; 
+            text-align: center;
+            transform-style: preserve-3d;
+        }
+
         .back-btn {
             display: inline-block;
             margin-bottom: 20px;
             color: var(--purple-text);
             text-decoration: none;
             font-weight: 600;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            filter: brightness(1.2);
+            transform: translateX(-5px);
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: left;
+            margin-top: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-x: auto;
+        }
+
+        code {
+            color: #fa7000;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 600;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        .nav-item {
+            width: 100%;
+            min-height: auto;
+            cursor: default;
+            margin-bottom: 20px;
+        }
+
+        .nav-info {
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <div class="card">
-        <a href="index.html" class="back-btn">← 返回主页</a>
-        <h1>C Programming</h1>
-        <div id="greeting" style="margin-bottom: 20px;">📚 核心知识点库</div>
+        <div style="text-align: left;">
+            <a href="index.html" class="back-btn">← 返回主页</a>
+        </div>
         
-        <div class="nav-item" style="width: 100%; min-height: auto; cursor: default;">
+        <h1 style="color: white; text-shadow: 0 2px 15px rgba(0,0,0,0.5);">C Programming</h1>
+        <div id="greeting" style="margin-bottom: 30px; color: white !important;">📚 核心知识点库</div>
+        
+        <div class="nav-item">
             <div class="nav-info">
                 <span class="name">C Program Intro</span>
-                <div class="desc" style="-webkit-line-clamp: unset;">
+                <div class="desc" style="-webkit-line-clamp: unset; opacity: 1;">
+                    <p style="color: white; margin-bottom: 10px;">这是 C 语言的基本程序结构示例：</p>
                 </div>
             </div>
         </div>
-    </div>
 
-    </body>
+        </div>
+
+    <script>
+        const card = document.querySelector('.nav-item');
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const rotateX = ((y - rect.height / 2) / rect.height) * -10;
+            const rotateY = ((x - rect.width / 2) / rect.width) * 10;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
+        });
+    </script>
+</body>
 </html>
