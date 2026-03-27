@@ -3,22 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C Program Knowledge</title>
+    <title>C Program Knowledge Base</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .card {
-            background: transparent;
-            width: 90%;
-            max-width: 1000px; 
-            text-align: center;
-            transform-style: preserve-3d;
-        }
-
         #c-knowledge-container {
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
             margin-top: 30px;
+            width: 100%;
         }
 
         .nav-item {
@@ -27,29 +20,25 @@
             text-decoration: none;
             display: flex;
             flex-direction: column;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 18px;
-            padding: 22px;
-            color: var(--purple-text) !important;
-            transition: transform 0.4s ease, background 0.3s;
             transform-style: preserve-3d;
         }
 
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.18);
-        }
-
         .name { font-weight: 700; font-size: 1.2rem; margin-bottom: 8px; display: block; }
-        .desc { color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; line-height: 1.5; }
+        .desc { font-size: 0.9rem; line-height: 1.5; }
+        
+        .back-link {
+            display: block;
+            text-align: left;
+            margin-bottom: 20px;
+            color: var(--purple-text);
+            text-decoration: none;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
     <div class="card">
-        <div style="text-align: left;">
-            <a href="index.html" style="color: var(--purple-text); text-decoration: none; font-weight: 600;">← 返回主页</a>
-        </div>
+        <a href="index.html" class="back-link">← 返回主页</a>
         
         <h1 style="color: white;">C Programming</h1>
         <div id="greeting" style="color: white !important;">📚 核心知识点库</div>
@@ -61,9 +50,10 @@
         async function loadCData() {
             const container = document.getElementById('c-knowledge-container');
             try {
-                const response = await fetch('c-data.json');
-                const data = await response.json();
+                const response = await fetch('./c-data.json');
+                if (!response.ok) throw new Error('找不到 c-data.json');
                 
+                const data = await response.json();
                 container.innerHTML = "";
                 
                 data.forEach(item => {
@@ -78,6 +68,7 @@
                         </div>
                     `;
 
+                    // 绑定 3D 效果
                     link.addEventListener('mousemove', (e) => {
                         const rect = link.getBoundingClientRect();
                         const x = e.clientX - rect.left;
@@ -94,8 +85,8 @@
                     container.appendChild(link);
                 });
             } catch (err) {
-                console.error("加载 C 语言数据失败:", err);
-                container.innerHTML = "<p style='color:white;'>数据加载失败，请检查 c-data.json 是否存在。</p>";
+                console.error(err);
+                container.innerHTML = `<p style='color:white;'>数据加载失败: ${err.message}</p>`;
             }
         }
 
