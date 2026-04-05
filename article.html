@@ -193,8 +193,47 @@ nicole@cse: </code></pre>
             </div>
 
             <p>占位符，顾名思义就是告诉程序我们会在这里打印一个变量，但是我们现在不知道他的值是多少，只知道他是什么类型，所以用一个占位符告诉程序我们要打印什么类型的变量，让他去逗号后面找，
-            每个类型都有对应的占位符，类型根据你对变量的定义时的类型来决定。
+            每个类型都有对应的占位符，类型根据你对变量的定义时的类型来决定。关于变量的类型以及如何打印他们内容基本上就讲完了，接下来我们就开始讲基础运算符
             </p>
+
+            <p>
+            在c语言开始时我们常用的基础运算符有“+，-，*，/，%”，他们分别对应“加，减，乘，除法（取整），除法（取余）”，前面三个很好理解，但是除法有两种，这对于刚接触c语言的同学
+            可能会有点疑惑，但其实我给两种除法括号中写的一样，当你对整数类型使用‘/’时，计算得到的结果就是取整之后的就像这样</p>
+            <pre><code>#include &lt;stdio.h&gt;
+int main() {
+    int a = 11 / 4;
+    printf("%d\n", a);
+}</code></pre>
+
+            <div class="terminal-block">
+                <pre><code>nicole@cse: 2
+nicole@cse: </code></pre>
+            
+            <p>如果对整数用‘%’取余，得到的结果则是</p>
+            <pre><code>#include &lt;stdio.h&gt;
+int main() {
+    int a = 11 / 4;
+    printf("%d\n", a);
+}</code></pre>
+
+            <div class="terminal-block">
+                <pre><code>nicole@cse: 3
+nicole@cse: </code></pre>
+            <p>当然如果对double也就是小数类型使用‘/’取整时，你就能获得正常的小数了</p>
+
+            <pre><code>#include &lt;stdio.h&gt;
+int main() {
+    double a = 11 / 4;
+    printf("%.2f\n", a); // %.2f 是小数占位符double类型占位符
+}</code></pre>
+
+            <div class="terminal-block">
+                <pre><code>nicole@cse: 2.75
+nicole@cse: </code></pre>
+
+        <p>%.2f 是小数占位符double类型占位符，2是打印两位小数的意思，如果你想打印其他位数输入对应的数字就好，如果
+        你不知道打印多少位double的默认占位符是%.lf，标准打印十位小数。
+        </p>
         </div>
     </div>
 
