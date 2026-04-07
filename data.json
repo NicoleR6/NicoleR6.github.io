@@ -23,5 +23,11 @@
         "icon": "🛠️",
         "url": "cprogram.html", 
         "desc": "C 语言知识库，讲解一些c语言基础内容"
+    },
+    {
+        "name": "Contact Us",
+        "icon": "<div class='discord-icon-wrapper'><div class='discord-icon-svg'></div></div>",
+        "url": "https://discord.gg/QFwWQq4z",
+        "desc": "我们自己建设的UNSW学习社区，讨论关于在UNSW的学习和生活相关问题"
     }
 ]
