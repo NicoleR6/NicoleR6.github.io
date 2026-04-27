@@ -1,4 +1,443 @@
+<!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KONG DERUI | Personal Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(95, 168, 155, 0.18), transparent 28%),
+        radial-gradient(circle at 80% 70%, rgba(155, 182, 174, 0.12), transparent 30%),
+        #12110f;
+      color: #e8e2d6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.55) 1px, transparent 1.8px),
+        radial-gradient(circle, rgba(255, 255, 255, 0.18) 1px, transparent 1.8px);
+      background-size: 90px 90px, 140px 140px;
+      background-position: 20px 30px, 70px 80px;
+      opacity: 0.42;
+    }
+
+    .nav {
+      height: 64px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8vw;
+      backdrop-filter: blur(18px);
+      background: rgba(18, 17, 15, 0.68);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: -0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #d4cfc4;
+    }
+
+    .nav-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #95b8b1;
+    }
+
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 54px 24px 70px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.75fr 1.25fr;
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(36, 34, 30, 0.84);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 22px 80px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(18px);
+    }
+
+    .profile {
+      min-height: 230px;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .avatar-wrap {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, #20d0b1, #9dbbb5);
+      margin: 0 auto;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #2d2a25;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      font-weight: 800;
+      color: #dcefe9;
+    }
+
+    h1 {
+      color: #7fa79f;
+      font-size: 28px;
+      letter-spacing: -0.04em;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      color: #9bb8b1;
+      font-size: 15px;
+      margin-bottom: 22px;
+    }
+
+    .bio {
+      color: #d4cfc4;
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(149, 184, 177, 0.12);
+      color: #a9c8c0;
+      font-size: 13px;
+      border: 1px solid rgba(149, 184, 177, 0.14);
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #15d09c;
+      box-shadow: 0 0 18px #15d09c;
+    }
+
+    .location {
+      min-height: 230px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+    }
+
+    .circle-icon {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      border: 12px solid #89aaa4;
+      display: grid;
+      place-items: center;
+      color: #e8e2d6;
+      font-size: 24px;
+    }
+
+    .location strong {
+      font-size: 18px;
+    }
+
+    .location span {
+      color: #a6a096;
+      font-size: 13px;
+    }
+
+    .news {
+      min-height: 230px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #e8e2d6;
+    }
+
+    .muted {
+      color: #aaa399;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .pill-list {
+      margin-top: 16px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 12px;
+      background: rgba(19, 17, 15, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      font-size: 14px;
+      color: #ddd6ca;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .tag {
+      flex: 0 0 auto;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      color: #d9fff5;
+      background: #0a9e73;
+      padding: 4px 7px;
+      border-radius: 5px;
+    }
+
+    .wide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .music {
+      min-height: 250px;
+    }
+
+    .track {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(19, 17, 15, 0.55);
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .cover {
+      width: 54px;
+      height: 54px;
+      border-radius: 10px;
+      background: #91aaa5;
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+    }
+
+    .bar {
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      margin-top: 14px;
+      overflow: hidden;
+    }
+
+    .bar::before {
+      content: "";
+      display: block;
+      width: 58%;
+      height: 100%;
+      background: #91aaa5;
+      border-radius: inherit;
+    }
+
+    .projects {
+      min-height: 250px;
+    }
+
+    .project-item {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 13px;
+      background: rgba(19, 17, 15, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .project-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .badge {
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: #ffe8a2;
+      background: rgba(183, 136, 18, 0.2);
+      border: 1px solid rgba(255, 210, 93, 0.18);
+    }
+
+    .activity {
+      grid-column: span 1;
+      min-height: 350px;
+    }
+
+    .heatmap {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 6px;
+    }
+
+    .square {
+      aspect-ratio: 1;
+      border-radius: 4px;
+      background: #302d28;
+    }
+
+    .lv1 { background: #183b36; }
+    .lv2 { background: #0e675c; }
+    .lv3 { background: #0fa58f; }
+    .lv4 { background: #18d0b9; }
+
+    .writing {
+      grid-column: span 2;
+      min-height: 350px;
+    }
+
+    .post {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(19, 17, 15, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .post h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .post p {
+      color: #aaa399;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .actions {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      text-decoration: none;
+      color: #e8e2d6;
+      padding: 14px 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-weight: 800;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .button.primary {
+      color: #20312f;
+      background: #9dbbb5;
+      border-color: #9dbbb5;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .button.primary:hover {
+      background: #b0cec8;
+    }
+
+    @media (max-width: 980px) {
+      .grid,
+      .wide-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .writing,
+      .activity {
+        grid-column: span 1;
+      }
+
+      .profile {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 16px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="brand">KONG DERUI</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="grid">
+      <article class="card profile" id="about">
+        <div class="avatar-wrap">
+          <div class="avatar">KD</div>
         </div>
         <div>
           <h1>KONG DERUI</h1>
