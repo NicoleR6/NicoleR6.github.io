@@ -40,22 +40,22 @@
       inset: 0;
       pointer-events: none;
       background-image:
-        radial-gradient(circle, rgba(255, 220, 230, 0.36) 1px, transparent 1.7px),
-        radial-gradient(circle, rgba(216, 120, 154, 0.16) 1px, transparent 1.8px);
-      background-size: 110px 110px, 170px 170px;
+        radial-gradient(circle, rgba(255, 220, 230, 0.28) 1px, transparent 1.7px),
+        radial-gradient(circle, rgba(216, 120, 154, 0.12) 1px, transparent 1.8px);
+      background-size: 120px 120px, 180px 180px;
       background-position: 30px 40px, 80px 90px;
-      opacity: 0.28;
+      opacity: 0.24;
     }
 
     .nav {
-      height: 64px;
+      height: 58px;
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 8vw;
+      padding: 0 7vw;
       backdrop-filter: blur(18px);
-      background: rgba(18, 9, 20, 0.72);
+      background: rgba(18, 9, 20, 0.74);
       position: sticky;
       top: 0;
       z-index: 10;
@@ -63,14 +63,14 @@
 
     .brand {
       font-weight: 800;
-      font-size: 22px;
+      font-size: 20px;
       letter-spacing: -0.04em;
     }
 
     .nav-links {
       display: flex;
-      gap: 34px;
-      font-size: 14px;
+      gap: 30px;
+      font-size: 13px;
       font-weight: 700;
       color: var(--muted);
     }
@@ -86,37 +86,53 @@
     }
 
     main {
-      max-width: 1280px;
+      max-width: 1740px;
       margin: 0 auto;
-      padding: 54px 24px 70px;
+      padding: 28px 36px 34px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.75fr 1.25fr;
-      gap: 18px;
+      grid-template-columns: 1.15fr 0.58fr 1.75fr;
+      gap: 16px;
+    }
+
+    .wide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+      align-items: stretch;
+    }
+
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 0.82fr 1.38fr;
+      gap: 16px;
+      margin-top: 16px;
+      align-items: stretch;
     }
 
     .card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 18px;
-      padding: 22px;
+      padding: 16px;
       box-shadow: 0 22px 80px rgba(0, 0, 0, 0.32);
       backdrop-filter: blur(18px);
     }
 
     .profile {
-      min-height: 230px;
+      min-height: 172px;
       display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 22px;
+      grid-template-columns: 108px 1fr;
+      gap: 16px;
       align-items: start;
     }
 
     .avatar-wrap {
-      width: 82px;
-      height: 82px;
+      width: 68px;
+      height: 68px;
       border-radius: 50%;
       padding: 4px;
       background: linear-gradient(135deg, #f0a0bd, #8f3d63);
@@ -135,29 +151,29 @@
 
     h1 {
       color: var(--accent);
-      font-size: 28px;
+      font-size: 23px;
       letter-spacing: -0.04em;
       margin-bottom: 4px;
     }
 
     .subtitle {
       color: #e1a3b8;
-      font-size: 15px;
-      margin-bottom: 22px;
+      font-size: 13px;
+      margin-bottom: 10px;
     }
 
     .bio {
       color: var(--text);
-      line-height: 1.75;
-      font-size: 15px;
+      line-height: 1.48;
+      font-size: 13px;
     }
 
     .status {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-top: 24px;
-      padding: 8px 14px;
+      margin-top: 12px;
+      padding: 7px 12px;
       border-radius: 999px;
       background: rgba(216, 120, 154, 0.12);
       color: #f0b7c8;
@@ -174,28 +190,28 @@
     }
 
     .location {
-      min-height: 230px;
+      min-height: 172px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      gap: 16px;
+      gap: 14px;
     }
 
     .circle-icon {
-      width: 76px;
-      height: 76px;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
-      border: 12px solid #c46d91;
+      border: 10px solid #c46d91;
       display: grid;
       place-items: center;
       color: var(--text);
-      font-size: 24px;
+      font-size: 22px;
     }
 
     .location strong {
-      font-size: 18px;
+      font-size: 17px;
     }
 
     .location span {
@@ -204,11 +220,11 @@
     }
 
     .news {
-      min-height: 230px;
+      min-height: 172px;
     }
 
     .card-title {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 800;
       margin-bottom: 8px;
       color: var(--text);
@@ -216,25 +232,25 @@
 
     .muted {
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 13px;
+      line-height: 1.5;
     }
 
     .pill-list {
-      margin-top: 16px;
+      margin-top: 10px;
       display: grid;
-      gap: 10px;
+      gap: 7px;
     }
 
     .pill {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 11px 12px;
+      padding: 8px 10px;
       background: rgba(19, 9, 18, 0.64);
       border: 1px solid rgba(255, 210, 226, 0.06);
       border-radius: 10px;
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text);
       overflow: hidden;
       white-space: nowrap;
@@ -243,7 +259,7 @@
 
     .tag {
       flex: 0 0 auto;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 900;
       letter-spacing: 0.02em;
       color: #fff0f5;
@@ -252,38 +268,32 @@
       border-radius: 5px;
     }
 
-    .wide-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 18px;
-    }
-
     .track {
-      margin-top: 18px;
-      padding: 16px;
+      margin-top: 10px;
+      padding: 11px;
       border-radius: 14px;
       background: var(--card-soft);
       display: flex;
-      gap: 16px;
+      gap: 14px;
       align-items: center;
     }
 
     .cover {
-      width: 54px;
-      height: 54px;
+      width: 48px;
+      height: 48px;
       border-radius: 10px;
       background: #a9577e;
       display: grid;
       place-items: center;
-      font-size: 24px;
+      font-size: 22px;
+      flex: 0 0 auto;
     }
 
     .bar {
-      height: 7px;
+      height: 6px;
       border-radius: 999px;
       background: rgba(255, 225, 235, 0.08);
-      margin-top: 14px;
+      margin-top: 12px;
       overflow: hidden;
     }
 
@@ -297,8 +307,8 @@
     }
 
     .project-item {
-      margin-top: 14px;
-      padding: 14px;
+      margin-top: 9px;
+      padding: 10px;
       border-radius: 13px;
       background: var(--card-soft);
       border: 1px solid rgba(255, 210, 226, 0.06);
@@ -310,10 +320,11 @@
       gap: 10px;
       font-weight: 800;
       margin-bottom: 6px;
+      font-size: 14px;
     }
 
     .badge {
-      font-size: 10px;
+      font-size: 9px;
       padding: 4px 8px;
       border-radius: 999px;
       color: #ffd6e3;
@@ -322,16 +333,16 @@
       white-space: nowrap;
     }
 
-    .activity {
-      grid-column: span 1;
-      min-height: 350px;
+    .activity,
+    .writing {
+      min-height: 235px;
     }
 
     .heatmap {
-      margin-top: 18px;
+      margin-top: 10px;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: 6px;
+      gap: 5px;
     }
 
     .square {
@@ -346,31 +357,30 @@
     .lv4 { background: #df7ca0; }
 
     .writing {
-      grid-column: span 2;
-      min-height: 350px;
+      grid-column: span 1;
     }
 
     .post {
-      margin-top: 16px;
-      padding: 16px;
+      margin-top: 9px;
+      padding: 11px;
       border-radius: 14px;
       background: var(--card-soft);
       border: 1px solid rgba(255, 210, 226, 0.06);
     }
 
     .post h3 {
-      font-size: 15px;
-      margin-bottom: 8px;
+      font-size: 14px;
+      margin-bottom: 6px;
     }
 
     .post p {
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
+      font-size: 12px;
+      line-height: 1.5;
     }
 
     .actions {
-      margin-top: 40px;
+      margin-top: 24px;
       display: flex;
       justify-content: center;
       gap: 14px;
@@ -380,7 +390,7 @@
     .button {
       text-decoration: none;
       color: var(--text);
-      padding: 14px 26px;
+      padding: 12px 24px;
       border-radius: 999px;
       border: 1px solid rgba(255, 210, 226, 0.22);
       font-weight: 800;
@@ -402,15 +412,11 @@
       background: #f0a0bd;
     }
 
-    @media (max-width: 980px) {
+    @media (max-width: 1100px) {
       .grid,
-      .wide-grid {
+      .wide-grid,
+      .bottom-grid {
         grid-template-columns: 1fr;
-      }
-
-      .writing,
-      .activity {
-        grid-column: span 1;
       }
 
       .profile {
@@ -495,9 +501,10 @@
           <p class="muted">Python backtesting engine using volatility, trend filters, stop loss, and equity curves.</p>
         </div>
       </article>
+
     </section>
 
-    <section class="wide-grid">
+    <section class="bottom-grid">
       <article class="card activity">
         <div class="card-title">Learning Activity <span style="color:#f28aad">•</span></div>
         <p class="muted">Consistency over intensity.</p>
