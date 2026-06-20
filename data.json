@@ -27,7 +27,7 @@
     {
         "name": "Data Structure and Algorithm(DSA)",
         "icon": "🛠️",
-        "url": "cprogram.html", 
+        "url": "dsa.html",
         "desc": "一些算法技巧，和理解上的巧思，融入了我自己的理解和理论概念，会有一些主流语言的样例代码展示"
     },
     {

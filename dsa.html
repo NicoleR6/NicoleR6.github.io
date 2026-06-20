@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Knowledge</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #dsa-knowledge-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .nav-anchor {
+            width: 100%;
+            perspective: 1000px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+
+        .nav-item {
+            position: relative;
+            width: 100%;
+            padding: 22px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 18px;
+            pointer-events: none;
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out, background 0.3s;
+            box-sizing: border-box;
+        }
+
+        .nav-anchor:hover .nav-item {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .name { font-weight: 700; font-size: 1.2rem; margin-bottom: 8px; display: block; color: white; }
+        .desc { font-size: 0.9rem; line-height: 1.5; color: rgba(255, 255, 255, 0.8); }
+
+        .back-link {
+            display: block;
+            text-align: left;
+            margin-bottom: 20px;
+            color: var(--purple-text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <a href="index.html" class="back-link">← 返回主页</a>
+        <h1 style="color: white;">Data Structure & Algorithm</h1>
+        <div id="greeting" style="color: white !important;">📚 数据结构与算法知识库</div>
+        <div id="dsa-knowledge-container"></div>
+    </div>
+
+    <script>
+        async function loadDSAData() {
+            const container = document.getElementById('dsa-knowledge-container');
+            try {
+                const response = await fetch('./dsa-data.json');
+                if (!response.ok) throw new Error('找不到 dsa-data.json');
+
+                const data = await response.json();
+                container.innerHTML = "";
+
+                data.forEach(item => {
+                    const anchor = document.createElement('a');
+                    anchor.href = item.url;
+                    anchor.className = "nav-anchor";
+                    anchor.target = "_self";
+
+                    const inner = document.createElement('div');
+                    inner.className = "nav-item";
+                    inner.innerHTML = `
+                        <div class="nav-info">
+                            <span class="name">${item.icon || ''} ${item.name}</span>
+                            <div class="desc">${item.desc}</div>
+                        </div>
+                    `;
+
+                    anchor.appendChild(inner);
+
+                    anchor.addEventListener('mousemove', (e) => {
+                        const rect = anchor.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+
+                        const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -7;
+                        const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 7;
+
+                        inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+                    });
+
+                    anchor.addEventListener('mouseleave', () => {
+                        inner.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                    });
+
+                    container.appendChild(anchor);
+                });
+            } catch (err) {
+                console.error(err);
+                container.innerHTML = `<p style='color:white;'>数据加载失败: ${err.message}</p>`;
+            }
+        }
+        document.addEventListener('DOMContentLoaded', loadDSAData);
+    </script>
+</body>
+</html>
