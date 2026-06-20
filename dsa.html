@@ -66,7 +66,7 @@
         async function loadDSAData() {
             const container = document.getElementById('dsa-knowledge-container');
             try {
-                const response = await fetch('./dsa-data.json');
+                const response = await fetch('./dsa/dsa-data.json');
                 if (!response.ok) throw new Error('找不到 dsa-data.json');
 
                 const data = await response.json();
