@@ -25,6 +25,12 @@
         "desc": "C 语言知识库，讲解一些c语言基础内容"
     },
     {
+        "name": "Data Structure and Algorithm(DSA)",
+        "icon": "🛠️",
+        "url": "cprogram.html", 
+        "desc": "一些算法技巧，和理解上的巧思，融入了我自己的理解和理论概念，会有一些主流语言的样例代码展示"
+    },
+    {
         "name": "Contact Us",
         "icon": "<div class='discord-icon-wrapper'><div class='discord-icon-svg'></div></div>",
         "url": "https://discord.gg/MB8MsMVGRb",
